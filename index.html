@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube View Predictor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>YouTube View Predictor</h1>
+            <p>Track real-time views and predict future growth</p>
+        </header>
+        
+        <div class="input-section">
+            <input type="text" id="video-url" placeholder="Paste YouTube video URL here...">
+            <button id="analyze-btn">Analyze</button>
+            <div class="examples">
+                <small>Example: https://www.youtube.com/watch?v=dQw4w9WgXcQ</small>
+            </div>
+        </div>
+        
+        <div class="results" id="results" style="display: none;">
+            <div class="stats-container">
+                <div class="stat-box">
+                    <h3>Current Views</h3>
+                    <p id="current-views">0</p>
+                </div>
+                <div class="stat-box">
+                    <h3>View Rate</h3>
+                    <p id="view-rate">0 <span>views/min</span></p>
+                </div>
+                <div class="stat-box highlight">
+                    <h3>In 10 Minutes</h3>
+                    <p id="predicted-views">0</p>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <canvas id="view-chart"></canvas>
+            </div>
+            
+            <div class="controls">
+                <button id="stop-btn">Stop Tracking</button>
+                <div class="settings">
+                    <label for="delay-adjustment">API Delay Compensation:</label>
+                    <select id="delay-adjustment">
+                        <option value="1.0">None</option>
+                        <option value="1.2" selected>Medium</option>
+                        <option value="1.5">High</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        
+        <div class="loading" id="loading" style="display: none;">
+            <div class="spinner"></div>
+            <p>Fetching data from YouTube...</p>
+        </div>
+        
+        <div class="error" id="error" style="display: none;">
+            <p>⚠️ Error fetching video data. Please check the URL and try again.</p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
